@@ -1,0 +1,5 @@
+hotspot_SSID = raspihotspot
+hotspot_PW = 12345678910
+wifi_SSID = hello_world!
+wifi_PW = heytherealien!
+default_mode = 2
