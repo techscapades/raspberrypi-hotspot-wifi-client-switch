@@ -82,9 +82,9 @@ if current_mode is not default_mode:
 	if current_mode == 1:
 		print('setting current mode from 1 to 2')
 		process = subprocess.Popen(start_hs_cmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
-	if current_mode == 2:
+	else:
 		print('setting current mode from 2 to 1')
-		process = subprocess.Popen(start_wifi_cmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
+		process = subprocess.Popen(stop_hs_start_wifi_cmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
 	time.sleep(connection_sleep_time)
 if check_if_hs_active(get_ip_address(interface)):
         current_mode = 2
