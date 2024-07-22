@@ -7,14 +7,6 @@ LEDs or from a small OLED display, have fun :)
 '''
 
 '''==========================================SETUP=========================================='''
-# import Button class from gpiozero and define pin to attach button to
-from gpiozero import Button
-button_pin = 27 # following gpio definition
-button = Button(button_pin)
-# optional booleans for complex control
-switched_modes = True
-button_pressed = False
-
 # define time variables
 import time
 connection_sleep_time = 10
@@ -40,11 +32,20 @@ try:
 	stop_hs_start_wifi_cmd = f"sudo nmcli con down id {hotspot_SSID} && sudo nmcli d wifi connect {wifi_SSID} password {wifi_PW}"
 	start_wifi_cmd = f"sudo nmcli d wifi connect {wifi_SSID} password {wifi_PW}"
 	default_mode = config.get('default_mode')
+	button_pin = config.get('button_pin')
 	config_read_success = True
 except:
 	print(f'config file: {config_filename} not found, exiting in 60 seconds')
 	config_read_success = False
 	time.sleep(error_to_exit_time)
+
+# import Button class from gpiozero and define pin to attach button to
+from gpiozero import Button
+button_pin = int(button_pin) # following gpio definition
+button = Button(button_pin)
+# optional booleans for complex control
+switched_modes = True
+button_pressed = False
 
 # get the current ip address and determine which mode system is currently in
 import socket
@@ -78,11 +79,11 @@ else:
 default_mode = int(default_mode)
 print(f"default mode: {default_mode}")
 print(f"current mode: {current_mode}")
-if current_mode is not default_mode:
+if current_mode != default_mode:
 	if current_mode == 1:
 		print('setting current mode from 1 to 2')
 		process = subprocess.Popen(start_hs_cmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
-	else:
+	elif current_mode == 2:
 		print('setting current mode from 2 to 1')
 		process = subprocess.Popen(stop_hs_start_wifi_cmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
 	time.sleep(connection_sleep_time)
