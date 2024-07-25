@@ -9,5 +9,14 @@ Modes:
 Change the default mode in the config file.
 
 I use network manager to do this, running well on my raspberry pi
-zero w 2 on raspbian bookworm. I intend to add an oled display or neopixel
-to the circuit to show the different modes visually
+zero w 2 on raspbian bookworm. 
+
+There are 2 versions of the code, the basic version which will 
+work out the box is the one without the SSD1306 suffix. However to 
+use the version with SSD1306 you gotta follow these instructions
+and install adafruit circuit python on the raspberrypi:
+https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/circuitpython-raspi
+then after activating the virtual environment follow these steps to use the SSD1306:
+https://learn.adafruit.com/monochrome-oled-breakouts/python-setup
+
+All the best :)
