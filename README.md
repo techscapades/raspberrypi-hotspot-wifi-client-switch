@@ -71,6 +71,7 @@ WantedBy=multi-user.target</code>
 
 If you want to use the power and oled saving mode use "toggle_HS_client_SSD1306_power_save.py", this
 will turn the display off after 20 seconds, press once to wake the display, pressing again will toggle 
-the modes. I recommend using this version because it preserves the OLED from burn in
+the modes. I recommend using this version because it preserves the OLED from burn in. Note that you'll have to
+press the button for at least a second
 
 All the best :)
