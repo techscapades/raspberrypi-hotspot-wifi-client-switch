@@ -22,24 +22,35 @@ https://learn.adafruit.com/monochrome-oled-breakouts/python-setup
 if you intend to use the SSD1306 version and want to run the programme at startup , 
 I used ~/.bashrc to start the virtual environment, 
 and to start the programme I used systemd, steps to follow, replace $USER with your username:
-1. create a bash script <code>/home/$%USER/startcircuitpythonenv.sh</code>
+1. create a bash script
+
+<code>/home/$%USER/startcircuitpythonenv.sh</code>
+
 2. copy the following into the file and save
+
 <code>#!/bin/sh
 source /home/rpz21/env/bin/activate
 echo started circuitpython environment
 </code>
-4. sudo nano ~/.bashrc and append this into the end of the file
+
+3. sudo nano ~/.bashrc and append this into the end of the file
+
 <code>if [ -f ~/startcircuitpythonenv.sh ]; then
         . ~/startcircuitpythonenv.sh
 fi
 </code>
-5. create a bash script to run the toggle_HS_client_SSD1306.py code called runoled.sh and past this into it:
+
+4. create a bash script to run the toggle_HS_client_SSD1306.py code called runoled.sh and past this into it:
+
 <code>#!/bin/bash
 sudo /home/$USER/env/bin/python /home/$USER/toggle_HS_client_SSD1306.py
 </code>
-7.  create a systemd service to run this code
+
+5.  create a systemd service to run this code
+
 <code>sudo nano /etc/systemd/system/startoled.service</code>
-8. past this into the service and save
+
+6. past this into the service and save
 
 <code>[Unit]
 Description=begin HS <=> wifi client serivce
@@ -51,6 +62,7 @@ Restart=always
 
 [Install]
 WantedBy=multi-user.target</code>
+
 7. <code>sudo systemctl enable startoled.service</code>
 8. <code>sudo systemctl daemon-reload</code>
 9. <code>sudo systemctl start startoled.service to check that its working</code>
