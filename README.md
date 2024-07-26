@@ -1,7 +1,9 @@
 A simple script which uses a momentary push button connection between
 ground and a user definable gpio pin to toggle between wifi client and
 wifi hotspot mode, it uses a config file which contains the SSIDs and
-passphrases of the 2 networks. 
+passphrases of the 2 networks. It allows you to change config parameters, run scripts etc..
+on the raspberrypi through ssh using hotspot without the need for a router
+and then once done you can change it back to a normal wifi network
 
 Modes: 
 1 = wifi client mode - connects you to a wifi router 
