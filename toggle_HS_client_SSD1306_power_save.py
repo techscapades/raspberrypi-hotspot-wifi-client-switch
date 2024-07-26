@@ -238,7 +238,7 @@ while True:
 		button_pressed = False
 	# change this to reduce the reactiveness
 	time.sleep(poll_time)
-	print(time.time())
+	# print(time.time())
 	if time.time() - start_time >= oled_on_time and oled_switched == False:
 		oled.fill(0)
 		oled.show()
