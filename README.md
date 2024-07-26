@@ -19,4 +19,36 @@ https://learn.adafruit.com/circuitpython-on-raspberrypi-linux/circuitpython-rasp
 then after activating the virtual environment follow these steps to use the SSD1306:
 https://learn.adafruit.com/monochrome-oled-breakouts/python-setup
 
+if you intend to use the SSD1306 version and want to run the programme at startup , 
+I used ~/.bashrc to start the virtual environment, 
+and to start the programme I used systemd, steps to follow, replace $USER with your username:
+1. create a bash script /home/$%USER/startcircuitpythonenv.sh
+2. copy the following into the file and save
+#!/bin/sh
+source /home/rpz21/env/bin/activate
+echo started circuitpython environment
+3. sudo nano ~/.bashrc and append this into the end of the file
+if [ -f ~/startcircuitpythonenv.sh ]; then
+        . ~/startcircuitpythonenv.sh
+fi
+4. create a bash script to run the toggle_HS_client_SSD1306.py code called runoled.sh and past this into it:
+#!/bin/bash
+sudo /home/$USER/env/bin/python /home/$USER/toggle_HS_client_SSD1306.py
+5.  create a systemd service to run this code
+sudo nano /etc/systemd/system/startoled.service
+6. past this into the service and save
+[Unit]
+Description=begin HS <=> wifi client serivce
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/bash /home/$USER/runoled.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+7. sudo systemctl enable startoled.service
+8. sudo systemctl daemon-reload
+9. sudo systemctl start startoled.service to check that its working
+
 All the best :)
