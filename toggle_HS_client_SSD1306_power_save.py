@@ -18,6 +18,7 @@ import time
 connection_sleep_time = 10
 poll_time = 1
 error_to_exit_time = 10
+oled_on_time = 20
 
 # import all the SSD 1306 stuff
 import board
@@ -238,7 +239,7 @@ while True:
 	# change this to reduce the reactiveness
 	time.sleep(poll_time)
 	print(time.time())
-	if time.time() - start_time >= 20 and oled_switched == False:
+	if time.time() - start_time >= oled_on_time and oled_switched == False:
 		oled.fill(0)
 		oled.show()
 		oled_switched = True
