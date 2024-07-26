@@ -69,4 +69,8 @@ WantedBy=multi-user.target</code>
 8. <code>sudo systemctl daemon-reload</code>
 9. <code>sudo systemctl start startoled.service to check that its working</code>
 
+If you want to use the power and oled saving mode use "toggle_HS_client_SSD1306_power_save.py", this
+will turn the display off after 20 seconds, press once to wake the display, pressing again will toggle 
+the modes. I recommend using this version because it preserves the OLED from burn in
+
 All the best :)
