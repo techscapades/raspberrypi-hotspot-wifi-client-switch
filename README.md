@@ -30,7 +30,9 @@ echo started circuitpython environment
 3. sudo nano ~/.bashrc and append this into the end of the file
 
 if [ -f ~/startcircuitpythonenv.sh ]; then
+
         . ~/startcircuitpythonenv.sh
+
 fi
 
 4. create a bash script to run the toggle_HS_client_SSD1306.py code called runoled.sh and past this into it:
